@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-links">
+            <a href="resume/resume.html" class="nav-link">Resume</a>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:your.email@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <h1>Welcome to My Portfolio</h1>
+        <p>Hi, I'm a passionate Unreal Engine Developer with experience in game development. Check out my projects below!</p>
+    </header>
+
+    <section class="portfolio-grid" id="portfolio-grid">
+        <!-- Project cards will be inserted here by JavaScript -->
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('https://github.com/ptr-stasiv/Portfolio/blob/main/projects.json')
+                .then(response => response.json())
+                .then(projects => {
+                    const portfolioGrid = document.getElementById('portfolio-grid');
+
+                    projects.forEach(project => {
+                        const projectCard = document.createElement('div');
+                        projectCard.className = 'project';
+
+                        projectCard.innerHTML = `
+                                <div class="project-image-slider">
+                                    ${project.media.map(item => item.type === 'image' ? `<img src="${item.src}" alt="${project.name}">` : `<iframe src="${item.src}" frameborder="0" allowfullscreen></iframe>`).join('')}
+                                </div>
+
+                                <div class="project-info">
+                                    <h2>${project.name}</h2>
+                                    <p><strong>Genre:</strong> ${project.genre}</p>
+                                    <p><strong>Platforms:</strong> ${project.platforms}</p>
+                                    <p><strong>Type:</strong> ${project.type}</p>
+                                    <p><strong>Year:</strong> ${project.year}</p>
+                                    <p>${project.description}</p>
+                                    <div class="project-links">
+                                        ${project.github ? `<a href="${project.github}" target="_blank"><i class="fab fa-github"></i> GitHub</a>` : ""}
+                                        ${project.store ? `<a href="${project.store.link}" target="_blank"><i class="fas fa-store"></i> ${project.store.name}</a>` : ""}
+                                    </div>
+                                </div>
+                            `;
+                        portfolioGrid.appendChild(projectCard);
+                    });
+
+                    document.querySelectorAll('.project-image-slider').forEach(slider => {
+                        const items = slider.querySelectorAll('img, iframe');
+                        let currentIndex = 0;
+
+                        items.forEach((item, index) => {
+                            item.classList.add(index === 0 ? 'visible' : 'hidden'); // Set the initial visibility
+                        });
+
+                        const prevButton = document.createElement('button');
+                        prevButton.className = 'slider-button prev';
+                        prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+                        const nextButton = document.createElement('button');
+                        nextButton.className = 'slider-button next';
+                        nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+                        slider.appendChild(prevButton);
+                        slider.appendChild(nextButton);
+
+                        prevButton.addEventListener('click', () => {
+                            items[currentIndex].classList.remove('visible');
+                            items[currentIndex].classList.add('hidden');
+                            currentIndex = (currentIndex - 1 + items.length) % items.length;
+                            items[currentIndex].classList.remove('hidden');
+                            items[currentIndex].classList.add('visible');
+                        });
+
+                        nextButton.addEventListener('click', () => {
+                            items[currentIndex].classList.remove('visible');
+                            items[currentIndex].classList.add('hidden');
+                            currentIndex = (currentIndex + 1) % items.length;
+                            items[currentIndex].classList.remove('hidden');
+                            items[currentIndex].classList.add('visible');
+                        });
+                    });
+                })
+                .catch(error => console.error('Error loading projects:', error));
+        });
+    </script>
+</body>
+</html>

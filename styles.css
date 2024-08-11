@@ -1,0 +1,187 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #1f1f1f;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+    header h1 {
+        margin: 0;
+        font-size: 3em;
+        letter-spacing: 2px;
+        color: #00e6e6;
+    }
+
+    header p {
+        margin: 20px 0 0;
+        font-size: 1.3em;
+        color: #b3b3b3;
+    }
+
+.nav-links {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+    .nav-links a {
+        color: #00e6e6;
+        font-size: 1.2em;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+.social-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+    .social-links a {
+        color: #00e6e6;
+        font-size: 2em; /* Increased font size for larger icons */
+        margin-right: 20px; /* Spacing between icons */
+        transition: color 0.3s ease;
+    }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project {
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .project:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+.project-info {
+    padding: 20px;
+}
+
+.project h2 {
+    font-size: 1.8em;
+    margin: 0;
+    color: #00e6e6;
+}
+
+.project p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #b3b3b3;
+}
+
+.project-links {
+    margin-top: 15px;
+}
+
+    .project-links a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #00e6e6;
+        font-size: 1.1em;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .project-links a:hover {
+            color: #ffffff;
+        }
+
+    .project-links i {
+        margin-right: 5px;
+    }
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+.project-image-slider {
+    position: relative;
+    overflow: hidden;
+    height: 300px; /* Adjust height as needed */
+}
+
+    .project-image-slider img, .project-image-slider iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+    }
+
+        .project-image-slider img.hidden, .project-image-slider iframe.hidden {
+            opacity: 0; /* Hide the content with opacity */
+        }
+
+        .project-image-slider img.visible, .project-image-slider iframe.visible {
+            opacity: 1; /* Show the content with opacity */
+        }
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 2em; /* Increase font size for arrows */
+    opacity: 0; /* Initially hide the buttons with opacity */
+    visibility: hidden; /* Hide the buttons */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for visibility and opacity */
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.slider-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.project:hover .slider-button {
+    opacity: 1; /* Make buttons fully visible on hover */
+    visibility: visible; /* Ensure buttons are clickable */
+}

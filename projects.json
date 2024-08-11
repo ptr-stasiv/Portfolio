@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Project Title 1",
+    "genre": "Action/Adventure",
+    "platforms": "PC, PS5, Xbox",
+    "type": "Commercial",
+    "year": "2023",
+    "description": "This project involved developing an action-packed adventure game for multiple platforms.",
+    "media": [
+      {
+        "type": "image",
+        "src": "images/project-image1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "images/project-image2.jpg"
+      },
+      {
+        "type": "video",
+        "src": "https://www.youtube.com/embed/4i401rNYgTA?si=eJd90Xde29cOUDzH"
+      }
+    ],
+    "github": "https://github.com/yourrepo1",
+    "store": {
+      "name": "Steam",
+      "link": "https://store.steampowered.com/app/123456789"
+    }
+  },
+  {
+    "name": "Project Title 2",
+    "genre": "Puzzle",
+    "platforms": "Mobile, PC",
+    "type": "Pet Project",
+    "year": "2022",
+    "description": "A puzzle game designed for mobile and PC platforms.",
+    "media": [
+      {
+        "type": "image",
+        "src": "images/project-image1.jpg"
+      },
+      {
+        "type": "image",
+        "src": "images/project-image2.jpg"
+      }
+    ],
+    "github": "https://github.com/yourrepo2",
+    "store": {
+      "name": "itch.io",
+      "link": "https://itch.io/app/123456789"
+    }
+  }
+]
